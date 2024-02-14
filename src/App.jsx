@@ -41,15 +41,17 @@ function App() {
   ]
   let [counter, setCounter] = useState(0);
   let [text, setText] = useState("Will you be my Valentine ?");
+  let [check,setCheck] = useState(false)
   function update() {
     const yesBtn = document.querySelector("#yes");
     const h1 = document.querySelector("h1");
     const noBtn = document.querySelector("#no");
-    yesBtn.style.scale = `${(counter + 1) * 1.1}`;
-    yesBtn.style.transform = `translateY(-${(counter + 1) * 2}%)`;
-    h1.style.transform = `translateY(-${(counter + 1) * 100}%)`;
+    yesBtn.style.scale = `${(counter + 1) * 45}%`;
+    yesBtn.style.transform = `translateY(-${(counter + 1) * 3}%)`;
+    h1.style.transform = `translateY(-${(counter + 1) * 30}%)`;
     if (counter === valueArr.length - 1) {
-      yesBtn.style.scale = `${(counter + 1) * 1.5}`;
+      noBtn.style.display = "none";
+      // yesBtn.style.scale = `${(counter + 1) * 1.5}`;
     }
     // console.log(yesBtn.classList)
     // console.log(-(counter+1)*100)
@@ -57,13 +59,13 @@ function App() {
   function reset() {
     const h1 = document.querySelector("h1");
     const noBtn = document.querySelector("#no");
-    noBtn.style.display = "none";
+    
     h1.style = "";
   }
   console.log(counter)
   return (
-    <div className="h-dvh w-dvw flex flex-col items-center justify-between">
-      {counter === 14 ? <div>
+    <div className="h-dvh w-dvw flex flex-col items-center justify-between overflow-hidden">
+      {check ? <div>
         <img className="h-40 w-40 object-cover z-10" src={successImgArr[0]} alt="gif" />
         <img className="h-40 w-40 object-cover z-10" src={successImgArr[1]} alt="gif" />
         <img className="h-40 w-40 object-cover z-10" src={successImgArr[2]} alt="gif" />
@@ -74,8 +76,7 @@ function App() {
         id="yes"
         onClick={(e) => {
           e.preventDefault();
-          setCounter((prev) => prev + 1);
-
+          setCheck(true)
           setText("I know you love me so much muah");
           e.target.style = "display : none";
           console.log(e.target.style);
