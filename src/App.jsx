@@ -59,7 +59,7 @@ function App() {
   function reset() {
     const h1 = document.querySelector("h1");
     const noBtn = document.querySelector("#no");
-    
+    noBtn.style.display = "none";
     h1.style = "";
   }
   console.log(counter)
